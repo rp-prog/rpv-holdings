@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>A · Quiet Institution — R.P.V. Holdings Ltd.</title>
+<link rel="icon" href="../../assets/crest-light.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1c2430;--navy:#142033;--gold:#9a7b3c;--paper:#f3efe6;--ivory:#faf7f1;--rule:#d7d0c3;--mute:#6d675c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Outfit,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1080px,calc(100% - 40px));margin:0 auto}
+.nav{position:sticky;top:0;z-index:20;background:rgba(243,239,230,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:34px;height:40px}
+.brand b{display:block;font-family:"Cormorant Garamond",serif;font-size:20px;letter-spacing:.14em;font-weight:500}
+.brand small{letter-spacing:.32em;font-size:9px;text-transform:uppercase;color:var(--gold)}
+.nav-links{display:flex;gap:22px;list-style:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.menu{display:none;border:1px solid var(--rule);padding:8px 12px;background:none;font:inherit}
+.hero{padding:92px 0 72px;border-bottom:1px solid var(--rule)}
+.hero-grid{display:grid;gap:48px;align-items:end}
+@media(min-width:860px){.hero-grid{grid-template-columns:1.2fr .8fr}}
+.kicker{letter-spacing:.3em;text-transform:uppercase;font-size:11px;color:var(--gold);margin-bottom:18px}
+h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,7vw,76px);line-height:1.08;margin-bottom:22px}
+.lead{max-width:46ch;color:var(--mute);font-size:17px;margin-bottom:32px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid var(--navy);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.btn-fill{background:var(--navy);color:#faf7f1}
+.seal{justify-self:center;text-align:center}
+.seal svg{width:min(240px,70vw);height:auto;margin:0 auto 12px}
+.seal p{letter-spacing:.4em;text-transform:uppercase;font-size:10px;color:var(--gold)}
+.section{padding:84px 0}
+h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(30px,5vw,52px);line-height:1.14;margin:10px 0 18px}
+.muted{color:var(--mute);max-width:62ch}
+.grid-4{display:grid;gap:1px;background:var(--rule);margin-top:40px;border:1px solid var(--rule)}
+@media(min-width:800px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--ivory);padding:26px 22px 30px}
+.card:hover,.cell:hover,.box:hover{outline:1px solid var(--gold)}
+.card .n{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:22px;margin-bottom:14px}
+.card h3{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500;margin-bottom:10px}
+.strip{display:grid;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+@media(min-width:800px){.strip{grid-template-columns:repeat(3,1fr)}}
+.strip div{padding:24px 8px 24px 0}
+.strip b{display:block;font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500}
+.strip span{color:var(--mute);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.about{background:var(--ivory)}
+.facts{display:grid;gap:16px;margin-top:28px}
+@media(min-width:700px){.facts{grid-template-columns:1fr 1fr}}
+.fact{border-top:1px solid var(--rule);padding-top:12px}
+.fact b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.fact span{font-family:"Cormorant Garamond",serif;font-size:22px}
+.official{background:var(--navy);color:#f3efe6}
+.official .kicker{color:#d4b56a}
+.official .muted{color:#c5c0b6}
+.table{margin-top:36px;display:grid;gap:1px;background:#2a3648}
+@media(min-width:800px){.table{grid-template-columns:1fr 1fr}}
+.cell{background:#1a2636;padding:22px 24px}
+.cell small{display:block;color:#d4b56a;letter-spacing:.16em;text-transform:uppercase;font-size:11px;margin-bottom:8px}
+.boxes .box{border:1px solid var(--rule);padding:20px 22px;margin-top:14px;background:#fff}
+.boxes b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.boxes a,.boxes p{font-family:"Cormorant Garamond",serif;font-size:26px}
+form{border:1px solid var(--rule);padding:28px;background:#fff;margin-top:8px}
+label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:14px 0 6px;color:var(--mute)}
+input,textarea{width:100%;border:0;border-bottom:1px solid var(--rule);background:transparent;padding:8px 0;font:inherit;outline:none}
+textarea{min-height:110px}
+form .btn{margin-top:22px}
+.contact-grid{display:grid;gap:36px}
+@media(min-width:860px){.contact-grid{grid-template-columns:.9fr 1.1fr}}
+footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);font-size:13px}
+.preview-bar{position:sticky;bottom:0;background:#142033;color:#f3efe6;padding:10px 16px;font-size:12px;display:flex;justify-content:center;gap:18px;z-index:30}
+.preview-bar a{color:#d4b56a}
+@media(max-width:800px){.nav-links{display:none}.nav.open .nav-links{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--paper);padding:16px 20px 24px;border-bottom:1px solid var(--rule)}.menu{display:block}.hero{padding:56px 0 48px}.section{padding:56px 0}h1{line-height:1.12}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+<div class="wrap nav-inner">
+<a class="brand" href="#top">
+<svg viewBox="0 0 200 240" fill="none" aria-hidden="true"><path d="M100 10 L170 32 C177 88 166 148 100 226 C34 148 23 88 30 32 Z" stroke="#9a7b3c" stroke-width="2.2"/><text x="100" y="118" text-anchor="middle" font-family="Times New Roman,serif" font-size="46" fill="#9a7b3c" letter-spacing="3">RPV</text></svg>
+<span><b>R.P.V.</b><small>Holdings Ltd.</small></span>
+</a>
+<button class="menu" id="menuBtn">Menu</button>
+<ul class="nav-links">
+<li><a href="#mandate">Mandate</a></li>
+<li><a href="#about">Company</a></li>
+<li><a href="#official">Particulars</a></li>
+<li><a href="#contact">Office</a></li>
+</ul>
+</div>
+</header>
+<main id="top">
+<section class="hero">
+<div class="wrap hero-grid">
+<div>
+<p class="kicker">Labuan International Business Centre</p>
+<h1>A holding company.<br/>Nothing more is claimed.</h1>
+<p class="lead">A privately held Labuan company limited by shares. A structure for long-term capital, title and succession — not a public invitation.</p>
+<div class="actions">
+<a class="btn btn-fill" href="#official">Particulars</a>
+<a class="btn" href="#contact">Office</a>
+</div>
+</div>
+<div class="seal">
+<svg viewBox="0 0 200 240" fill="none"><path d="M100 10 L170 32 C177 88 166 148 100 226 C34 148 23 88 30 32 Z" stroke="#9a7b3c" stroke-width="2"/><path d="M100 22 L160 40 C166 88 156 142 100 208 C44 142 34 88 40 40 Z" stroke="#9a7b3c" stroke-width=".7" opacity=".4"/><text x="100" y="120" text-anchor="middle" font-family="Times New Roman,serif" font-size="48" fill="#9a7b3c" letter-spacing="3">RPV</text></svg>
+<p>Holdings Ltd.</p>
+</div>
+</div>
+</section>
+<section class="section" id="mandate">
+<div class="wrap">
+<p class="kicker">Mandate</p>
+<h2>Permanence over commentary.</h2>
+<p class="muted">The company is organised for ownership and allocation across jurisdictions. Risk is sized before return is pursued.</p>
+<div class="grid-4">
+<article class="card"><div class="n">01</div><h3>Preservation</h3><p class="muted">Capital is treated as a multi-decade responsibility.</p></article>
+<article class="card"><div class="n">02</div><h3>Structure</h3><p class="muted">A Labuan holding vehicle for title, succession and cross-border allocation.</p></article>
+<article class="card"><div class="n">03</div><h3>Governance</h3><p class="muted">Board discipline and licensed secretarial oversight.</p></article>
+<article class="card"><div class="n">04</div><h3>Allocation</h3><p class="muted">Public markets, private assets, real estate and digital value — selected, not collected.</p></article>
+</div>
+</div>
+</section>
+<div class="wrap"><div class="strip">
+<div><b>28 May 2026</b><span>Incorporated</span></div>
+<div><b>Labuan FSA</b><span>Regulatory authority</span></div>
+<div><b>Private holding</b><span>Not a public invitation</span></div>
+</div></div>
+<section class="section about" id="about">
+<div class="wrap">
+<p class="kicker">About the company</p>
+<h2>A private holding company, not a public invitation.</h2>
+<p class="muted">R.P.V. Holdings Ltd. was incorporated on 28 May 2026 under the Labuan Companies Act 1990. It is a strategic holding vehicle for assets across jurisdictions. This website does not offer securities and is not an invitation to the public.</p>
+<div class="facts">
+<div class="fact"><b>Jurisdiction</b><span>Labuan F.T., Malaysia</span></div>
+<div class="fact"><b>Form</b><span>Company limited by shares</span></div>
+<div class="fact"><b>Incorporated</b><span>28 May 2026</span></div>
+<div class="fact"><b>Secretary</b><span>AMAX Trust &amp; Advisory</span></div>
+</div>
+</div>
+</section>
+<section class="section official" id="official">
+<div class="wrap">
+<p class="kicker">The register</p>
+<h2>Particulars.</h2>
+<p class="muted">Published for corporate identification only.</p>
+<div class="table">
+<div class="cell"><small>Company</small>R.P.V. Holdings Ltd.</div>
+<div class="cell"><small>Company no.</small>LL22224</div>
+<div class="cell"><small>Status</small>Active — incorporated 28 May 2026</div>
+<div class="cell"><small>Company type</small>Company Limited by Shares (Labuan)</div>
+<div class="cell"><small>Jurisdiction</small>Labuan Federal Territory, Malaysia</div>
+<div class="cell"><small>Regulatory authority</small>Labuan Financial Services Authority</div>
+<div class="cell"><small>Company secretary</small>AMAX Trust &amp; Advisory Limited</div>
+<div class="cell"><small>Registered office</small>No. 1-23A, First Floor, Paragon, Jalan Tun Mustapha, 87008 Labuan F.T., Malaysia</div>
+</div>
+</div>
+</section>
+<section class="section" id="contact">
+<div class="wrap contact-grid">
+<div class="boxes">
+<p class="kicker">Office</p>
+<h2>Write to the house.</h2>
+<p class="muted">For corporate identification, governance or other official matters.</p>
+<div class="box"><b>Email</b><a href="mailto:info@rpvholdings.com">info@rpvholdings.com</a></div>
+<div class="box"><b>Telephone</b><a href="tel:+601139375380">+60 11-3937 5380</a></div>
+<div class="box"><b>Registered office</b><p>No. 1-23A, First Floor, Paragon, Labuan</p></div>
+</div>
+<form action="mailto:info@rpvholdings.com" method="post" enctype="text/plain">
+<p class="kicker">Correspondence</p>
+<label for="n">Name</label><input id="n" name="Name" required/>
+<label for="e">Email</label><input id="e" type="email" name="Email" required/>
+<label for="m">Message</label><textarea id="m" name="Message" required></textarea>
+<button class="btn btn-fill" type="submit">Send</button>
+</form>
+</div>
+</section>
+</main>
+<footer><div class="wrap">R.P.V. Holdings Ltd. is a privately held Labuan company. This website is for general corporate information only and does not constitute financial advice, a solicitation, or an offer to sell or buy any security, digital asset or investment product. © 2026 R.P.V. Holdings Ltd.</div></footer>
+<div class="preview-bar"><a href="../">All variants</a><a href="../b/">B Celestial</a><a href="../c/">C Editorial</a></div>
+<script>document.getElementById('menuBtn').onclick=()=>document.getElementById('nav').classList.toggle('open');</script>
+</body>
+</html>
