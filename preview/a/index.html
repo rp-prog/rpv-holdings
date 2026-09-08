@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{--ink:#1c2430;--navy:#142033;--gold:#9a7b3c;--paper:#f3efe6;--ivory:#faf7f1;--rule:#d7d0c3;--mute:#6d675c}
+:root{--ink:#1c2430;--navy:#142033;--gold:#9a7b3c;--gold-2:#c4a15a;--paper:#f3efe6;--ivory:#faf7f1;--rule:#d7d0c3;--mute:#6d675c}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Outfit,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+body{font-family:Outfit,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .wrap{width:min(1080px,calc(100% - 40px));margin:0 auto}
 .nav{position:sticky;top:0;z-index:20;background:rgba(243,239,230,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
@@ -21,26 +21,47 @@ a{color:inherit;text-decoration:none}
 .brand b{display:block;font-family:"Cormorant Garamond",serif;font-size:20px;letter-spacing:.14em;font-weight:500}
 .brand small{letter-spacing:.32em;font-size:9px;text-transform:uppercase;color:var(--gold)}
 .nav-links{display:flex;gap:22px;list-style:none;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
-.menu{display:none;border:1px solid var(--rule);padding:8px 12px;background:none;font:inherit}
-.hero{padding:92px 0 72px;border-bottom:1px solid var(--rule)}
-.hero-grid{display:grid;gap:48px;align-items:end}
+.menu{display:none;border:1px solid var(--rule);padding:8px 12px;background:none;font:inherit;min-height:44px}
+.hero{position:relative;padding:92px 0 72px;border-bottom:1px solid var(--rule);overflow:hidden}
+.paper-light{position:absolute;inset:-20% -10%;pointer-events:none;background:radial-gradient(circle at var(--mx,78%) var(--my,18%),rgba(255,248,230,.55),transparent 42%);animation:paperDrift 28s ease-in-out infinite;z-index:0}
+@keyframes paperDrift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-3%,2%,0)}}
+.hero-grid{position:relative;z-index:1;display:grid;gap:48px;align-items:end}
 @media(min-width:860px){.hero-grid{grid-template-columns:1.2fr .8fr}}
 .kicker{letter-spacing:.3em;text-transform:uppercase;font-size:11px;color:var(--gold);margin-bottom:18px}
-h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,7vw,76px);line-height:1.08;margin-bottom:22px}
+h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(40px,7vw,76px);line-height:1.08;margin-bottom:14px}
+.gold-rule{width:0;height:1px;background:var(--gold);margin:0 0 22px;animation:ruleDraw 1.2s .7s ease forwards}
+@keyframes ruleDraw{to{width:min(220px,40%)}}
 .lead{max-width:46ch;color:var(--mute);font-size:17px;margin-bottom:32px}
+.rise{opacity:0;transform:translateY(14px);animation:riseIn .8s ease forwards}
+.d1{animation-delay:.15s}.d2{animation-delay:.32s}.d3{animation-delay:.48s}.d4{animation-delay:.64s}
+@keyframes riseIn{to{opacity:1;transform:none}}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid var(--navy);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.btn{position:relative;display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid var(--navy);font-size:12px;letter-spacing:.16em;text-transform:uppercase;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(154,123,60,.22),transparent);transform:translateX(-120%);pointer-events:none}
+.btn:hover::after,.btn:focus-visible::after{animation:sheen .7s ease}
+@keyframes sheen{to{transform:translateX(120%)}}
 .btn-fill{background:var(--navy);color:#faf7f1}
-.seal{justify-self:center;text-align:center}
-.seal svg{width:min(240px,70vw);height:auto;margin:0 auto 12px}
+.seal{justify-self:center;text-align:center;animation:stamp .7s .2s cubic-bezier(.2,1.4,.3,1) both}
+@keyframes stamp{from{opacity:0;transform:translateY(-10px) scale(1.06)}to{opacity:1;transform:none}}
+.seal-frame{position:relative;width:min(240px,70vw);margin:0 auto 12px}
+.seal-frame svg{width:100%;height:auto;display:block}
+.draw-path{stroke-dasharray:720;stroke-dashoffset:720;animation:drawSeal 1.6s .1s ease forwards}
+@keyframes drawSeal{to{stroke-dashoffset:0}}
+.orbit-ring{position:absolute;inset:-10%;border:1px solid rgba(154,123,60,.28);border-radius:50%;animation:orbit 72s linear infinite;pointer-events:none}
+.orbit-ring i{position:absolute;top:0;left:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--gold-2);box-shadow:0 0 8px rgba(196,161,90,.7)}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.sheen-crest{position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,244,214,.35) 50%,transparent 60%);background-size:220% 220%;animation:crestSheen 8s 2s ease-in-out infinite;pointer-events:none;mix-blend-mode:soft-light}
+@keyframes crestSheen{0%,100%{background-position:120% 0}50%{background-position:-20% 0}}
 .seal p{letter-spacing:.4em;text-transform:uppercase;font-size:10px;color:var(--gold)}
 .section{padding:84px 0}
 h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(30px,5vw,52px);line-height:1.14;margin:10px 0 18px}
 .muted{color:var(--mute);max-width:62ch}
 .grid-4{display:grid;gap:1px;background:var(--rule);margin-top:40px;border:1px solid var(--rule)}
 @media(min-width:800px){.grid-4{grid-template-columns:repeat(4,1fr)}}
-.card{background:var(--ivory);padding:26px 22px 30px}
-.card:hover,.cell:hover,.box:hover{outline:1px solid var(--gold)}
+.card,.cell,.box,.fact,.strip div,form{transition:box-shadow .35s ease, outline-color .35s ease, background-color .35s ease}
+.card{background:var(--ivory);padding:26px 22px 30px;outline:1px solid transparent}
+.card:hover,.card.lit,.cell:hover,.cell.lit,.box:hover,.box.lit,.fact:hover,.fact.lit,.strip div:hover,form:hover,form.lit{outline:1px solid var(--gold);box-shadow:0 0 0 1px rgba(154,123,60,.25),0 16px 36px rgba(20,32,51,.06)}
+.cell.lit,.cell:hover{background:#1f3046}
 .card .n{font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:22px;margin-bottom:14px}
 .card h3{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500;margin-bottom:10px}
 .strip{display:grid;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
@@ -54,17 +75,20 @@ h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(30px,5
 .fact{border-top:1px solid var(--rule);padding-top:12px}
 .fact b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
 .fact span{font-family:"Cormorant Garamond",serif;font-size:22px}
-.official{background:var(--navy);color:#f3efe6}
+.official{position:relative;background:var(--navy);color:#f3efe6;overflow:hidden}
+.official::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 0,rgba(212,181,106,.16),transparent 55%);animation:navyBreathe 12s ease-in-out infinite;pointer-events:none}
+@keyframes navyBreathe{0%,100%{opacity:.45}50%{opacity:1}}
+.official .wrap{position:relative;z-index:1}
 .official .kicker{color:#d4b56a}
 .official .muted{color:#c5c0b6}
 .table{margin-top:36px;display:grid;gap:1px;background:#2a3648}
 @media(min-width:800px){.table{grid-template-columns:1fr 1fr}}
-.cell{background:#1a2636;padding:22px 24px}
+.cell{background:#1a2636;padding:22px 24px;outline:1px solid transparent}
 .cell small{display:block;color:#d4b56a;letter-spacing:.16em;text-transform:uppercase;font-size:11px;margin-bottom:8px}
-.boxes .box{border:1px solid var(--rule);padding:20px 22px;margin-top:14px;background:#fff}
+.boxes .box{border:1px solid var(--rule);padding:20px 22px;margin-top:14px;background:#fff;outline:1px solid transparent}
 .boxes b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-.boxes a,.boxes p{font-family:"Cormorant Garamond",serif;font-size:26px}
-form{border:1px solid var(--rule);padding:28px;background:#fff;margin-top:8px}
+.boxes a,.boxes p{font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1.25}
+form{border:1px solid var(--rule);padding:28px;background:#fff;margin-top:8px;outline:1px solid transparent}
 label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:14px 0 6px;color:var(--mute)}
 input,textarea{width:100%;border:0;border-bottom:1px solid var(--rule);background:transparent;padding:8px 0;font:inherit;outline:none}
 textarea{min-height:110px}
@@ -74,7 +98,19 @@ form .btn{margin-top:22px}
 footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);font-size:13px}
 .preview-bar{position:sticky;bottom:0;background:#142033;color:#f3efe6;padding:10px 16px;font-size:12px;display:flex;justify-content:center;gap:18px;z-index:30}
 .preview-bar a{color:#d4b56a}
-@media(max-width:800px){.nav-links{display:none}.nav.open .nav-links{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--paper);padding:16px 20px 24px;border-bottom:1px solid var(--rule)}.menu{display:block}.hero{padding:56px 0 48px}.section{padding:56px 0}h1{line-height:1.12}}
+@media(max-width:800px){
+  .nav-links{display:none}
+  .nav.open .nav-links{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--paper);padding:16px 20px 24px;border-bottom:1px solid var(--rule)}
+  .menu{display:block}.hero{padding:56px 0 48px}.section{padding:56px 0}h1{line-height:1.12}
+  .orbit-ring{display:none}
+  .paper-light{animation:none;background:radial-gradient(circle at 80% 10%,rgba(255,248,230,.4),transparent 46%)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rise,.seal,.draw-path,.gold-rule,.orbit-ring,.paper-light,.sheen-crest,.official::before{animation:none!important}
+  .rise,.seal,.draw-path{opacity:1;transform:none;stroke-dashoffset:0}
+  .gold-rule{width:min(220px,40%)}
+}
 </style>
 </head>
 <body>
@@ -84,7 +120,7 @@ footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);fo
 <svg viewBox="0 0 200 240" fill="none" aria-hidden="true"><path d="M100 10 L170 32 C177 88 166 148 100 226 C34 148 23 88 30 32 Z" stroke="#9a7b3c" stroke-width="2.2"/><text x="100" y="118" text-anchor="middle" font-family="Times New Roman,serif" font-size="46" fill="#9a7b3c" letter-spacing="3">RPV</text></svg>
 <span><b>R.P.V.</b><small>Holdings Ltd.</small></span>
 </a>
-<button class="menu" id="menuBtn">Menu</button>
+<button class="menu" id="menuBtn" aria-label="Open menu">Menu</button>
 <ul class="nav-links">
 <li><a href="#mandate">Mandate</a></li>
 <li><a href="#about">Company</a></li>
@@ -94,19 +130,29 @@ footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);fo
 </div>
 </header>
 <main id="top">
-<section class="hero">
+<section class="hero" id="hero">
+<div class="paper-light" id="paperLight"></div>
 <div class="wrap hero-grid">
 <div>
-<p class="kicker">Labuan International Business Centre</p>
-<h1>A holding company.<br/>Nothing more is claimed.</h1>
-<p class="lead">A privately held Labuan company limited by shares. A structure for long-term capital, title and succession — not a public invitation.</p>
-<div class="actions">
+<p class="kicker rise d1">Labuan International Business Centre</p>
+<h1 class="rise d2">A holding company.<br/>Nothing more is claimed.</h1>
+<div class="gold-rule"></div>
+<p class="lead rise d3">A privately held Labuan company limited by shares. A structure for long-term capital, title and succession — not a public invitation.</p>
+<div class="actions rise d4">
 <a class="btn btn-fill" href="#official">Particulars</a>
 <a class="btn" href="#contact">Office</a>
 </div>
 </div>
 <div class="seal">
-<svg viewBox="0 0 200 240" fill="none"><path d="M100 10 L170 32 C177 88 166 148 100 226 C34 148 23 88 30 32 Z" stroke="#9a7b3c" stroke-width="2"/><path d="M100 22 L160 40 C166 88 156 142 100 208 C44 142 34 88 40 40 Z" stroke="#9a7b3c" stroke-width=".7" opacity=".4"/><text x="100" y="120" text-anchor="middle" font-family="Times New Roman,serif" font-size="48" fill="#9a7b3c" letter-spacing="3">RPV</text></svg>
+<div class="seal-frame" id="sealFrame">
+<span class="orbit-ring" aria-hidden="true"><i></i></span>
+<svg viewBox="0 0 200 240" fill="none" role="img" aria-label="R.P.V. crest">
+<path class="draw-path" d="M100 10 L170 32 C177 88 166 148 100 226 C34 148 23 88 30 32 Z" stroke="#9a7b3c" stroke-width="2.2"/>
+<path d="M100 22 L160 40 C166 88 156 142 100 208 C44 142 34 88 40 40 Z" stroke="#9a7b3c" stroke-width=".7" opacity=".4"/>
+<text x="100" y="120" text-anchor="middle" font-family="Times New Roman,serif" font-size="48" fill="#9a7b3c" letter-spacing="3">RPV</text>
+</svg>
+<span class="sheen-crest"></span>
+</div>
 <p>Holdings Ltd.</p>
 </div>
 </div>
@@ -144,7 +190,7 @@ footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);fo
 </section>
 <section class="section official" id="official">
 <div class="wrap">
-<p class="kicker">The register</p>
+<p class="kicker">Official information</p>
 <h2>Particulars.</h2>
 <p class="muted">Published for corporate identification only.</p>
 <div class="table">
@@ -156,6 +202,7 @@ footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);fo
 <div class="cell"><small>Regulatory authority</small>Labuan Financial Services Authority</div>
 <div class="cell"><small>Company secretary</small>AMAX Trust &amp; Advisory Limited</div>
 <div class="cell"><small>Registered office</small>No. 1-23A, First Floor, Paragon, Jalan Tun Mustapha, 87008 Labuan F.T., Malaysia</div>
+<div class="cell"><small>Correspondence</small>info@rpvholdings.com</div>
 </div>
 </div>
 </section>
@@ -163,11 +210,11 @@ footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);fo
 <div class="wrap contact-grid">
 <div class="boxes">
 <p class="kicker">Office</p>
-<h2>Write to the house.</h2>
+<h2>Office.</h2>
 <p class="muted">For corporate identification, governance or other official matters.</p>
 <div class="box"><b>Email</b><a href="mailto:info@rpvholdings.com">info@rpvholdings.com</a></div>
 <div class="box"><b>Telephone</b><a href="tel:+601139375380">+60 11-3937 5380</a></div>
-<div class="box"><b>Registered office</b><p>No. 1-23A, First Floor, Paragon, Labuan</p></div>
+<div class="box"><b>Registered office</b><p>No. 1-23A, First Floor, Paragon<br>Jalan Tun Mustapha<br>87008 Labuan Federal Territory<br>Malaysia</p></div>
 </div>
 <form action="mailto:info@rpvholdings.com" method="post" enctype="text/plain">
 <p class="kicker">Correspondence</p>
@@ -181,6 +228,35 @@ footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--mute);fo
 </main>
 <footer><div class="wrap">R.P.V. Holdings Ltd. is a privately held Labuan company. This website is for general corporate information only and does not constitute financial advice, a solicitation, or an offer to sell or buy any security, digital asset or investment product. © 2026 R.P.V. Holdings Ltd.</div></footer>
 <div class="preview-bar"><a href="../">All variants</a><a href="../b/">B Celestial</a><a href="../c/">C Editorial</a></div>
-<script>document.getElementById('menuBtn').onclick=()=>document.getElementById('nav').classList.toggle('open');</script>
+<script>
+const nav=document.getElementById('nav');
+document.getElementById('menuBtn').onclick=()=>nav.classList.toggle('open');
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const light=document.getElementById('paperLight');
+const seal=document.getElementById('sealFrame');
+if(fine && !reduce && light){
+  window.addEventListener('mousemove',e=>{
+    const r=document.getElementById('hero').getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width)*100;
+    const y=((e.clientY-r.top)/r.height)*100;
+    light.style.setProperty('--mx',x+'%');
+    light.style.setProperty('--my',y+'%');
+    if(seal && e.clientY<r.bottom && e.clientY>r.top){
+      const dx=(e.clientX/innerWidth-0.5)*8;
+      const dy=(e.clientY/innerHeight-0.5)*6;
+      seal.style.transform='rotateX('+(-dy)+'deg) rotateY('+dx+'deg)';
+    }
+  },{passive:true});
+}
+const glow=[...document.querySelectorAll('.card,.cell,.box,.fact,.strip div,form')];
+glow.forEach(el=>{
+  const on=()=>{glow.forEach(n=>n.classList.remove('lit'));el.classList.add('lit')};
+  el.addEventListener('mouseenter',on);
+  el.addEventListener('mouseleave',()=>el.classList.remove('lit'));
+  el.addEventListener('touchstart',on,{passive:true});
+});
+</script>
 </body>
 </html>
